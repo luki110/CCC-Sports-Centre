@@ -1,0 +1,47 @@
+﻿@model CCCSportsCentreGradedUnit.Models.Booking
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h4 class="text-success">Booking Details</h4>
+
+<div style="height:130px; background-color:aliceblue" class="container border">
+    <div class="col-12">
+        <div class="row" style="padding-top:10px;">
+            <div class="col-2">
+                First Name
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.Member.FirstName" readonly class="form-control" />
+            </div>
+           
+            <div class="col-2">
+                Last Name
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.Member.LastName" readonly class="form-control" />
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row" style="padding-top:10px;">
+            <div class="col-2">
+                Email
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.Member.Email" readonly class="form-control" />
+            </div>
+           
+            <div class="col-2">
+                Booked at
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.BookingDate" readonly class="form-control" data-date-format="dd/mm/yyyy" />
+            </div>
+        </div>
+    </div>
+
+   
+</div>

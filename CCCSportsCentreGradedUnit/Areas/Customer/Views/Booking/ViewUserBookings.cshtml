@@ -1,0 +1,180 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.MemberBookingViewModel
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<form method="get">
+
+    <br /> <br />
+    <h2 classs="text-info">Booking List</h2>
+    <br />
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        <a asp-action="AppListDownload" asp-controller="Booking" class="btn btn-info">Generate excel bookings report</a>
+
+        <!--<a asp-action="BookingReport" asp-controller="Booking" class="btn btn-info">Generate PDF bookings report</a>-->
+    }
+
+
+    <div style="height:180px; background-color:aliceblue" class="container">
+        @* we will add search criteria*@
+        <div class="col-12">
+            <div class="row" style="padding-top:10px;">
+                <div class="col-2">
+                    Last Name
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-2">
+                    Email
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row" style="padding-top:10px;">
+                <div class="col-2">
+                    Phone Number
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="col-2">
+                    Booked at
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row" style="padding-top:10px;">
+                <div class="col-2">
+                    Booking Number
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchBookingId", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-3">
+                    <button type="submit" name="submit" value="Seacrch" class="btn btn-primary form-control">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br /> <br />
+
+    <div>
+        <table class="table table-striped border table-responsive">
+            <tr class="table-info">
+                <th>
+                    Booking Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().Member.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().Member.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().BookingDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().BookingTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().Member.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Bookings.FirstOrDefault().Member.PhoneNumber)
+                </th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            @foreach (var item in Model.Bookings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Member.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Member.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.BookingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.BookingTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Member.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Member.PhoneNumber)
+                    </td>
+                    <td>
+                    <td style="width@150px">
+                        <div class="btn-group" role="group">
+
+
+                            <a type="button" class="btn btn-success" href="@Url.Action("BookingDetails/"+item.Id)">
+                                <i class="far fa-list-alt"></i>
+                            </a>
+                            @if (DateTime.Today < item.BookingDate)
+                            {
+                                <a type="button" class="btn btn-danger" href="@Url.Action("Delete/"+item.Id)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            }
+
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</form>
+
+@section Scripts{
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: "dd/mm/yy"
+            }
+            );
+        });
+    </script>
+}

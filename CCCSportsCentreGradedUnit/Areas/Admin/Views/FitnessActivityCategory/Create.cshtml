@@ -1,0 +1,72 @@
+﻿@model CCCSportsCentreGradedUnit.Models.FitnessActivityCategory
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<h2 class="text-info"> Create Activity Type</h2>
+<form method="post" enctype="multipart/form-data">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Description"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Image"></label>
+            </div>
+            <div class="col-5">
+                <input type="file" name="files" class="form-control" />
+            </div>
+
+        </div>
+
+
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Create" />
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

@@ -1,0 +1,63 @@
+﻿@model List<CCCSportsCentreGradedUnit.Models.FitnessClass>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (Model != null)
+{
+
+
+    <table class="table table-striped table-responsive" width="100%">
+        <tr class="table-info">
+            <th style="text-align:center;">
+                <label>Class name</label>
+            </th>
+            <th style="text-align:center;">
+                <label>Start date</label>
+            </th>
+            <th style="text-align:center; ">
+                <label> Start time</label>
+            </th>
+            <th style="text-align:center; ">
+                <label> End time</label>
+            </th>
+            <th style="text-align:center;">
+                <label> Price</label>
+            </th>
+            <th style="text-align:center; ">
+                <label>Location</label>
+            </th>
+            <th style="text-align:center; "></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="padding:50px">
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.FitnessClassCategory.Name)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(m => item.StartDate)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:HH:mm}", item.StartTime)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:HH:mm}", item.EndTime)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:c}", item.Price)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.Room.Name)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <div>No items added to the shopping cart</div>
+}

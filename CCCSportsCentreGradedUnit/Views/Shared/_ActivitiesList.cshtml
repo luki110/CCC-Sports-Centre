@@ -1,0 +1,84 @@
+﻿@model List<CCCSportsCentreGradedUnit.Models.FitnessActivity>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (Model.Count > 0)
+{
+
+
+    <table class="table table-striped table-responsive" width:"100%">
+        <tr class="table-info">
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().FitnessActivityCategory.Name"></label>
+            </th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().Price"></label>
+            </th>
+            <th style="text-align:center; ">
+                <label asp-for="@Model.FirstOrDefault().StartDate"></label>
+            </th>
+            <th style="text-align:center; ">
+                <label asp-for="@Model.FirstOrDefault().StartTime"></label>
+            </th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().EndTime"></label>
+            </th>
+            <th style="text-align:center; ">
+                <label>Location</label>
+            </th>
+            <th style="text-align:center; "></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr style="padding:50px">
+        <td style="text-align:center">
+            @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+        </td>
+        <td style="text-align:center">
+            @String.Format("{0:c}", item.Price)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(m => item.StartDate)
+        </td>
+        <td style="text-align:center">
+            @String.Format("{0:HH:mm}", item.StartTime)
+        </td>
+        <td style="text-align:center">
+            @String.Format("{0:HH:mm}", item.EndTime)
+        </td>
+
+        <td style="text-align:center">
+            @Html.DisplayFor(c => item.Room.Name)
+        </td>
+        <td>
+            @if (!item.Available)
+            {
+                <a asp-action="Details" asp-controller="Booking" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+            }
+            else
+            {
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Details" asp-controller="Booking" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                }
+                else
+                {
+                    <div class="col-12">
+                        <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+                       
+                        <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                    </div>
+                    
+                }
+            }
+
+
+        </td>
+
+    </tr>
+        }
+
+    </table>
+}
+

@@ -1,0 +1,206 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.BookClassViewModel
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<form method="post">
+    <br /> <br />
+
+    <h2 class="text-info">Your Shopping Cart</h2>
+
+    <br />
+    @if (Model.FitnessClasses.Count == 0 && Model.FitnessActivities.Count == 0)
+    {
+        <div>
+            No items added to the shopping cart.
+        </div>
+
+    }
+    else
+    {
+        <div class="container border border-secondary rounded" style="padding:15px;">
+            <div class="row">
+                <div class="col-8" style="border-right:1px solid #bbb9b9;">
+                    <h2 class="text-info">Selected classes</h2>
+                    <table class="table table-striped table-responsive" width:"100%">
+                        <tr class="table-info">
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessClasses.FirstOrDefault().FitnessClassCategory.Name"></label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessClasses.FirstOrDefault().Price"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label asp-for="@Model.FitnessClasses.FirstOrDefault().StartDate"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label asp-for="@Model.FitnessClasses.FirstOrDefault().StartTime"></label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessClasses.FirstOrDefault().EndTime"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label>Location</label>
+                            </th>
+                            <th style="text-align:center; "></th>
+                        </tr>
+                        @foreach (var item in Model.FitnessClasses)
+                        {
+                    <tr style="padding:50px">
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.FitnessClassCategory.Name)
+                        </td>
+                        <td>
+                            @String.Format("{0:c}", item.Price)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.StartDate)
+                        </td>
+                        <td>
+                            @String.Format("{0:HH:mm}", item.StartTime)
+                        </td>
+                        <td>
+                            @String.Format("{0:HH:mm}", item.EndTime)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Room.Name)
+                        </td>
+                        <td style="text-align: center">
+                            <a type="submit" class="btn btn-danger" asp-action="removeClass" asp-route-id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+
+                <div class="col-8" style="border-right:1px solid #bbb9b9;">
+                    <h2 class="text-info">Selected activities</h2>
+                    <table class="table table-striped table-responsive" width="100%">
+                        <tr class="table-info">
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessActivities.FirstOrDefault().FitnessActivityCategory.Name"></label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessActivities.FirstOrDefault().Price"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label asp-for="@Model.FitnessActivities.FirstOrDefault().StartDate"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label asp-for="@Model.FitnessActivities.FirstOrDefault().StartTime"></label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label asp-for="@Model.FitnessActivities.FirstOrDefault().EndTime"></label>
+                            </th>
+                            <th style="text-align:center; ">
+                                <label>Location</label>
+                            </th>
+                            <th style="text-align:center; "></th>
+                        </tr>
+                        @foreach (var item in Model.FitnessActivities)
+                        {
+                    <tr style="padding:50px">
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                        </td>
+                        <td>
+                            @String.Format("{0:c}", item.Price)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.StartDate)
+                        </td>
+                        <td>
+                            @String.Format("{0:HH:mm}", item.StartTime)
+                        </td>
+                        <td>
+                            @String.Format("{0:HH:mm}", item.EndTime)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Room.Name)
+                        </td>
+                        <td style="text-align: center">
+                            <a type="submit" class="btn btn-danger" asp-action="removeActivity" asp-route-id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+                <div class="col-4" style="padding-left:30px;">
+                    <div class="row">
+                        <div class="col-12">
+                            <label asp-for="@Model.Member.FirstName"></label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Member.FirstName" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="@Model.Member.LastName"></label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Member.LastName" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="@Model.Member.Email"></label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.Member.Email" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="@Model.BookingTotal"></label>
+                        </div>
+                        <div class="col-12" style="padding-bottom:15px">
+                            <input asp-for="@Model.BookingTotal" disabled class="form-control" />
+                        </div>
+
+                        @{ var price = Model.BookingTotal * 100;}
+
+                        <div class="col-12">
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button"
+                                    data-key="@Stripe.Value.PublishableKey"
+                                    data-amount="@price"
+                                    data-name="CCC Sports Centre"
+                                    data-label=" Checkout"
+                                    data-description="Booking"
+                                    data-locale="auto"
+                                    data-allow-remember-me="false"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-currency="GBP">
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</form>
+

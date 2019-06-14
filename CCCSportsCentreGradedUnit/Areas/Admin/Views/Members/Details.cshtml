@@ -1,0 +1,147 @@
+﻿@model CCCSportsCentreGradedUnit.Models.Member
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br />
+
+<h2 class="text-info">Member Details</h2>
+<div class="p-4 border rounded">
+
+
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Email"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Email" disabled class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="PhoneNumber"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="PhoneNumber" disabled class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="MemberTitle"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="MemberTitle" disabled class="form-control" />
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="FirstName"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="FirstName" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="LastName"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="LastName" disabled class="form-control" />
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="PostCode"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="PostCode" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="HouseNumber"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="HouseNumber" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Street"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Street" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="City"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="City" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="Country"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="Country" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="BirthDate"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="BirthDate" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="RegistrationDate"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="RegistrationDate" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="ExpiryDate"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="ExpiryDate" disabled class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="GenderType"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="GenderType" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <label asp-for="MembershipType"></label>
+        </div>
+        <div class="col-5">
+            <input asp-for="MembershipType.Name" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+
+</div>
+
+
+
+

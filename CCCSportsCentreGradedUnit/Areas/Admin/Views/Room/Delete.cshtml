@@ -1,0 +1,54 @@
+﻿@model CCCSportsCentreGradedUnit.Models.Room
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+
+<h2 class="text-info"> Delete Room</h2>
+<form method="post" asp-action="Delete">
+    <div class="p-4 border rounded">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" disabled class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Capacity"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Capacity" disabled class="form-control" />
+            </div>
+
+        </div>
+
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" asp-route-id="@Model.Id" value="Delete" />
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+
+</form>

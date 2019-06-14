@@ -1,0 +1,97 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel
+@using CCCSportsCentreGradedUnit.Extensions
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+
+<h2 class="text-info">Activity Details</h2>
+
+<div class="p-4 border rounded row">
+    <div class="col-8">
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivityCategories"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.FitnessActivityCategory.Name" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.StartDate"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.StartDate" readonly class="form-control" data-date-format="dd/mm/yyyy" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.StartTime"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.StartTime" readonly class="form-control" data-time-format="HH:mm" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.EndTime"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.EndTime" readonly class="form-control" data-time-format="HH:mm" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.Duration"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.Duration" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.Price"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.Price" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="FitnessActivity.Available"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.Available" disabled  />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Rooms"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="FitnessActivity.Room.Name" readonly class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="col-1">
+
+    </div>
+    <div class="col-3">
+        <img src="@Model.FitnessActivity.FitnessActivityCategory.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+    </div>
+    
+    <br />
+    <div class="form-group">
+        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.FitnessActivity.Id">Edit</a>
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+
+</div>
+
+
+
+

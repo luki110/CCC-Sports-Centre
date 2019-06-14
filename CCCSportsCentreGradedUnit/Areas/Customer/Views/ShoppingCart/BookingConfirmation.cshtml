@@ -1,0 +1,38 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.BookClassViewModel
+@{
+    ViewData["Title"] = "BookingConfirmation";
+}
+
+<br />
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<h2 class="text-info">Booking Confirmation</h2>
+<div class="form-text">
+    Your booking has been submitted.
+</div>
+
+<br />
+
+<partial name="~/Views/Shared/_BookingMemberDetails.cshtml" model="Model.Booking" />
+<br />
+<partial name="~/Views/Shared/_BookingClassDetails.cshtml" model="Model.FitnessClasses" />
+<br />
+<partial name="~/Views/Shared/_BookingActivityDetails.cshtml" model="Model.FitnessActivities" />
+
+<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-success">Back to Home Page</a>
+

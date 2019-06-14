@@ -1,0 +1,73 @@
+﻿@model CCCSportsCentreGradedUnit.Models.Member
+@using CCCSportsCentreGradedUnit
+
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@using  CCCSportsCentreGradedUnit.Data
+@inject ApplicationDbContext _db
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var price = Model.MembershipType.Price * 12;
+    var daysToExpiration = Model.ExpiryDate.Ticks - DateTime.Today.AddMonths(11).AddDays(21).Ticks;
+}
+<h2>Pay For Membership</h2>
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<form method="post">
+
+    @if (Model.PaymentConfirmed)
+    {
+        <p>Your membership will expire at @Model.ExpiryDate.Date</p>
+
+
+
+        if (Model.ExpiryDate.Ticks - DateTime.Today.AddMonths(11).AddDays(21).Ticks <= 7)
+        {
+            <p>Your membership will Expire in @daysToExpiration days</p>
+            <p>Please renew your membership before</p>
+        }
+    }
+    <p>You selected membership type: <b>@Model.MembershipType.Name</b> the price is £@price</p>
+    <br />
+
+
+    @{
+        var amount = price * 100;
+    }
+
+
+    <div class="col-12">
+        <script src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="@Stripe.Value.PublishableKey"
+                data-amount="@amount"
+                data-name="CCC Sports Centre"
+                data-label=" Checkout"
+                data-description="Registration"
+                data-locale="auto"
+                data-allow-remember-me="false"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-currency="GBP">
+        </script>
+
+
+    </div>
+
+
+</form>

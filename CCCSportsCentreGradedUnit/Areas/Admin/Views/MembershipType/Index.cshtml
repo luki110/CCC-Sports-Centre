@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CCCSportsCentreGradedUnit.Models.MembershipType>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+
+<div class="row">
+
+    <div class="col-6">
+        <h2 class="text-info">Membership Types List </h2>
+
+    </div>
+    <div class="col-6 text-lg-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Membership Type</a>
+    </div>
+
+</div>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <a asp-action="MembershipListDownload" asp-controller="MembershipType" class="btn btn-info">Generate excel membership report</a>
+    <a asp-action="MembershipRenewalListDownload" asp-controller="MembershipType" class="btn btn-info">Generate excel renewal report</a>
+}
+<br />
+<div>
+    <table class="table table-striped border table-responsive">
+        <tr class="table-info">
+
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(m => m.Price)
+            </th>
+            <th>
+                Number of members
+            </th>
+
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Members.Count)
+                </td>
+
+                <td>
+                    <partial name="_TableButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+
+        }
+    </table>
+
+</div>
+

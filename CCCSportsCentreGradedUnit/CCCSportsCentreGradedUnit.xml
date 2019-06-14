@@ -1,0 +1,1334 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CCCSportsCentreGradedUnit</name>
+    </assembly>
+    <members>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController">
+            <summary>
+            Eployees controller allows to perform crud opertaions on staff members
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Loads all employees to a paginated list, allows to search and sort employees
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns>list of employees</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Create">
+            <summary>
+            get method for creating staff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.CreateStaff(CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel)">
+            <summary>
+            creates new employee
+            </summary>
+            <param name="Createmodel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Edit(System.String)">
+            <summary>
+            loads employee's detials
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Edit(System.String,CCCSportsCentreGradedUnit.Models.Staff)">
+            <summary>
+            updates employee
+            </summary>
+            <param name="id"></param>
+            <param name="EditModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Details(System.String)">
+            <summary>
+            loads employee's details 
+            </summary>
+            <returns> staff</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.Delete(System.String)">
+             <summary>
+            loads employee's details 
+             </summary>
+             <returns> staff</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.EmployeesController.DeleteConfirmed(System.String)">
+            <summary>
+            Deletes employee
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController">
+            <summary>
+            Fitness ActivityCategory controller allows to perform crud opertaions on Fitness ActivityCategories
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Index">
+            <summary>
+            loads list of fitness activities categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Create">
+            <summary>
+            get method for creating fitness activity category
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Create(CCCSportsCentreGradedUnit.Models.FitnessActivityCategory)">
+            <summary>
+            creates new activity category, also handles image upload
+            </summary>
+            <param name="fitnessActivityCategory"></param>
+            <returns>new fitness activity category</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            loads activity category details
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Edit(System.Int32,CCCSportsCentreGradedUnit.Models.FitnessActivityCategory)">
+            <summary>
+            Updates fitness activity category, also handles image upload if image is uploaded
+            </summary>
+            <param name="id"></param>
+            <param name="fitnessActivityCategory"></param>
+            <returns>updated activity category</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Details(System.Nullable{System.Int32})">
+            <summary>
+            load details of activity category
+            </summary>
+            <param name="id"></param>
+            <returns> actvity category</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            loads details of activity category
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityCategoryController.DeleteConfirmed(System.Int32)">
+            <summary>
+            delete activity category and it's image
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController">
+            <summary>
+            Fitness Activity controller allows to perform crud opertaions o nfitness activities
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Loads all activities to paginated list,  allows to search and sort activities
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns>list of activities</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Create">
+            <summary>
+            create get method
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.CreatePOST">
+            <summary>
+            Post method to create fitness activity
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            load details of activity
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Edit(System.Int32)">
+            <summary>
+            updates fitness activity
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Details(System.Nullable{System.Int32})">
+            <summary>
+            loads details of activity
+            </summary>
+            <returns> fitness activity view model</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            loads detials of activitity and checks if it was booked
+            </summary>
+            <returns>fitness activity view model</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessActivityController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Deletes activity from db
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController">
+            <summary>
+            Fitness classCategory controller allows to perform crud opertaions on Fitness classCategories
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Index">
+            <summary>
+            loads list of fitness class categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Create">
+            <summary>
+            get method for creating fitness class category
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Create(CCCSportsCentreGradedUnit.Models.FitnessClassCategory)">
+            <summary>
+            creates new class category, also handles image upload
+            </summary>
+            <param name="fitnessClassCategory"></param>
+            <returns>new fitness class category</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Edit(System.Nullable{System.Int32})">
+             <summary>
+            loads classs category details
+             </summary>
+             <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Edit(System.Int32,CCCSportsCentreGradedUnit.Models.FitnessClassCategory)">
+            <summary>
+            Updates fitness class category, also handles image upload if image is uploaded
+            </summary>
+            <param name="id"></param>
+            <param name="fitnessClassCategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Details(System.Nullable{System.Int32})">
+            <summary>
+            load details of activity category
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            loads details of activity category
+            </summary>
+            <returns> class category</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassCategoryController.DeleteConfirmed(System.Int32)">
+            <summary>
+            delete class category and it's image
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController">
+            <summary>
+            Fitness class controller allows to perform crud opertaions on Fitness class
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Loads all classes to paginated list,  allows to search and sort classes
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns>list of fintess classes</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Create">
+            <summary>
+            create get method
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.CreatePOST(CCCSportsCentreGradedUnit.Models.FitnessClass)">
+            <summary>
+            Post method to create fitness class
+            </summary>
+            <param name="fitnessClass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            loads detials of class and checks if it was booked
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Edit(System.Int32)">
+            <summary>
+            updates fitness class
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Details(System.Nullable{System.Int32})">
+            <summary>
+            loads details of class
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            loads detials of class and checks if it was booked
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.FitnessClassesController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Deletes activity from db
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController">
+            <summary>
+            Members controller allows to perform read and update opertaions on members
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Loads all members to a paginated list, allows to search and sort members
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns>list of members</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController.Edit(System.String)">
+            <summary>
+            loads member's details
+            </summary>
+            <param name="id"></param>
+            <returns>member</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController.EditPost(System.String)">
+            <summary>
+            Updates member's details
+            </summary>
+            <param name="id"></param>
+            <returns>member</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController.Details(System.String)">
+            <summary>
+            load member's details
+            </summary>
+            <returns> member</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembersController.SuspendMember(System.String)">
+            <summary>
+            suspends user from booking
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController">
+            <summary>
+            MembershipType controller allows to perform crud opertaions on MembershipTypes
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Index">
+            <summary>
+            loads all membershi types
+            </summary>
+            <returns>list of membership types</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Create">
+            <summary>
+            Display view for create membership type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Create(CCCSportsCentreGradedUnit.Models.MembershipType)">
+            <summary>
+            creates new membership type
+            </summary>
+            <param name="membershipType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            loads details of membership type
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Edit(System.Int32,CCCSportsCentreGradedUnit.Models.MembershipType)">
+            <summary>
+            updates membership type
+            </summary>
+            <param name="id"></param>
+            <param name="membershipType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Details(System.Nullable{System.Int32})">
+            <summary>
+            displays details of membership type
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.Delete(System.Nullable{System.Int32})">
+            <summary>
+             displays details of membership type
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Deletes membership type from database
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.MembershipListDownload">
+            <summary>
+            creates membership type excel report
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.MembershipTypeController.MembershipRenewalListDownload">
+            <summary>
+            creates membership renewal and fees outstanding report
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController">
+            <summary>
+            Room controller allows to perform crud opertaions on rooms
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Index">
+            <summary>
+            loads list of rooms
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Create">
+            <summary>
+            get method for creating room
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Create(CCCSportsCentreGradedUnit.Models.Room)">
+            <summary>
+            Post method for creating room, adds new room to database
+            </summary>
+            <param name="room"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            loads details of room from database
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Edit(System.Int32,CCCSportsCentreGradedUnit.Models.Room)">
+            <summary>
+            updates details of room
+            </summary>
+            <param name="id"></param>
+            <param name="room"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Details(System.Nullable{System.Int32})">
+            <summary>
+            loads details of room
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            get details of room
+            </summary>
+            <returns> view</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Admin.Controllers.RoomController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Deletes room from database
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController">
+            <summary>
+            Book activity controller
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Displays fitness activities as paginated list
+            Allows user to filter and search for activity by name also user can sort activities by name and start time
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns>Paginated List of fitness activities, page size</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController.Details(System.Int32)">
+            <summary>
+            Displays details of selected activity
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController.DetailsPOST(System.Int32)">
+            <summary>
+            Adds selected fitness activity to session and shopping cart
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController.Remove(System.Int32)">
+            <summary>
+            Removes activity from shopping cart
+            </summary>
+            <param name="id"></param>
+            <returns>Redirects to index page</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookActivityController.ActivitiesReportListDownload">
+            <summary>
+            Creates excel report about revenue from activities
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.Index(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Loads all fitness classes, allows user to search, sort, displays 20 first items rest goes to next page thanks to iteration
+            </summary>
+            <param name="sortOrder"></param>
+            <param name="currentFilter"></param>
+            <param name="searchString"></param>
+            <param name="pageNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.Details(System.Int32)">
+            <summary>
+            gets details of selected fitness class
+            </summary>
+            <param name="id"></param>
+            <returns>fitness class</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.DetailsPOST(System.Int32)">
+            <summary>
+            checks if user is member, also checks if user can make booking and if he already booked this class
+            add fitness class to the basket
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.Remove(System.Int32)">
+            <summary>
+            Removes selected fitness class from basket
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.ViewUserBookings(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            For member it will display only bookings made by him. For staff member it will display all bookings
+            It allows user to search booking by members name, email, phonenumber, booking date, bookingdId
+            </summary>
+            <param name="searchName"></param>
+            <param name="searchEmail"></param>
+            <param name="searchPhone"></param>
+            <param name="searchDate"></param>
+            <param name="searchBookingId"></param>
+            <returns>view model -- bookings</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.BookingDetails(System.Nullable{System.Int32})">
+            <summary>
+            shows details of selected booking
+            </summary>
+            <param name="id"></param>
+            <returns>view model - booked class, booked activity, member's details</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            get method for deleting booking, loads all classes and activities booked under this booking Id
+            </summary>
+            <param name="id"></param>
+            <returns>view model -- booked fitness classes and activities also member</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.DeleteConfirmed(System.Int32)">
+            <summary>
+            deletes booking, and returns money to member
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.AppListDownload">
+            <summary>
+            create excel bookings report
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.BookingReport">
+            <summary>
+            for pdf report --- not working :(
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.BookingController.ClassesReportListDownload">
+            <summary>
+            Create revenue by class report
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.HomeController.Index">
+            <summary>
+            Display home page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.HomeController.About">
+            <summary>
+            display about page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.HomeController.Contact">
+            <summary>
+            display contact page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.HomeController.Cafe">
+            <summary>
+            Display information about cafe/bar 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.ShoppingCartController.Index">
+            <summary>
+            displays items added to shopping cart
+            </summary>
+            <returns>view model</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.ShoppingCartController.IndexPost(System.String,System.String)">
+            <summary>
+            creates new booking, add this booking to database, handles payment, sends email
+            </summary>
+            <param name="stripeEmail"></param>
+            <param name="stripeToken"></param>
+            <returns>booking</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.ShoppingCartController.RemoveClass(System.Int32)">
+            <summary>
+            Removes fitness class from shopping cart
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.ShoppingCartController.RemoveActivity(System.Int32)">
+            <summary>
+            Removes fitness activity from shopping cart
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Customer.Controllers.ShoppingCartController.BookingConfirmation(System.Int32)">
+            <summary>
+            display booking confirmation, what was booked and by who
+            </summary>
+            <param name="id"></param>
+            <returns>View model</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Identity.Pages.Account.MembershipPaymentController.Index(System.String)">
+            <summary>
+            finds member's Id and loads his data from database
+            </summary>
+            <param name="id"></param>
+            <returns>logged in member</returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Identity.Pages.Account.MembershipPaymentController.IndexPost(System.String,System.String)">
+            <summary>
+            Handles membership fee payment
+            </summary>
+            <param name="stripeEmail"></param>
+            <param name="stripeToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Areas.Identity.Pages.Account.RegisterModel.OnPostAsync(System.String)">
+            <summary>
+            register method
+            </summary>
+            <param name="returnUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.FirstName">
+            <summary>
+            stores First name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.LastName">
+            <summary>
+            stores last name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.HouseNumber">
+            <summary>
+            stores house number
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.Street">
+            <summary>
+            stores street
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.City">
+            <summary>
+            stores city
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.PostCode">
+            <summary>
+            stores post code
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ApplicationUser.Country">
+            <summary>
+            stores country
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.Id">
+            <summary>
+            stores Id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.BookingDate">
+            <summary>
+            Stores when booking was made
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.BookingTotal">
+            <summary>
+            stores total price of booking
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.MemberId">
+            <summary>
+            stores memberId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.Member">
+            <summary>
+            Link Member to MemberId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.BookingPaymentId">
+            <summary>
+            stores payment id -- this is needed for refunds
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.PaymentDate">
+            <summary>
+            stores when payment was made
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Booking.IsPaymentConfirmed">
+            <summary>
+            stores if payment is confirmed
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.Id">
+            <summary>
+            stores Id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.StartDate">
+            <summary>
+            stores start date
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.StartTime">
+            <summary>
+            stores start time
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.EndTime">
+            <summary>
+            stores end time
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.Duration">
+            <summary>
+            stores duration
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.Available">
+            <summary>
+            stores weter this activity is available
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.Price">
+            <summary>
+            stores price
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.RoomId">
+            <summary>
+            stores roomsId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.Room">
+            <summary>
+            Links Room to RoomId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.FitnessActivityCategoryId">
+            <summary>
+            stores FitnessActivityCategoryId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivity.FitnessActivityCategory">
+            <summary>
+            Links FitnessActivityCategory to FitnessActivityCategoryId as foreign key
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking">
+            <summary>
+            this class handles many to many relationship between FitnessActivity and Booking
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking.Id">
+            <summary>
+            stores Id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking.FitnessActivityId">
+            <summary>
+            Stores FitnessActivityId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking.FitnessActivity">
+            <summary>
+            Links FitnessActivity to FitnessActivityId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking.BookingId">
+            <summary>
+            stores bookingId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityBooking.Booking">
+            <summary>
+            Links Booking to BookingId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityCategory.Id">
+            <summary>
+            stores id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityCategory.Name">
+            <summary>
+            stores name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityCategory.Description">
+            <summary>
+            stores description
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessActivityCategory.Image">
+            <summary>
+            stores path to image
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.Id">
+            <summary>
+            stores id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.StartDate">
+            <summary>
+            stores start date
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.StartTime">
+            <summary>
+            stores start time
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.EndTime">
+            <summary>
+            stores end time
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.Duration">
+            <summary>
+            stores duration
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.Price">
+            <summary>
+            stores price
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.NoOfPeopleBooked">
+            <summary>
+            stores number of people who booked class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.Available">
+            <summary>
+            stores weter this class is available
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.RoomId">
+            <summary>
+            stores roomsId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.Room">
+            <summary>
+            Links Room to RoomId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.FitnessClassCategoryId">
+            <summary>
+            stores fitnessClassCategoryId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClass.FitnessClassCategory">
+            <summary>
+            Links FitnessClassCategory to FitnessClassCategoryId as foreign key
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.FitnessClassBooking">
+            <summary>
+            This class handles many to many relationship between booking table and fitnessClass table
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassBooking.Id">
+            <summary>
+            stores Id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassBooking.FitnessClassId">
+            <summary>
+            stores fitnessClass Id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassBooking.FitnessClass">
+            <summary>
+            Links FitnessClass to FitnessClassId as foreign key
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassBooking.BookingId">
+            <summary>
+            stores bookingId
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassBooking.Booking">
+            <summary>
+            Links Booking to bookingId as foreign key
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.FitnessClassCategory">
+            <summary>
+            fitnessClasscategory class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassCategory.Id">
+            <summary>
+            stores id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassCategory.Name">
+            <summary>
+            stores name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassCategory.Description">
+            <summary>
+            stores description
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.FitnessClassCategory.Image">
+            <summary>
+            stores path to the image 
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Member">
+            <summary>
+            Member class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.MemberTitle">
+            <summary>
+            stores member's title
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.BirthDate">
+            <summary>
+            stores members birth date
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.Age">
+            <summary>
+            stores member's age
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.GenderType">
+            <summary>
+            stores member's gender
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.RegistrationDate">
+            <summary>
+            stores member's registration date
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.ExpiryDate">
+            <summary>
+            stores when member's account will expire
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.CanMakeBooking">
+            <summary>
+            property to check if member can make booking
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.PaymentDate">
+            <summary>
+            stores payment date 
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.PaymentConfirmed">
+            <summary>
+            stores information if member have payed for membership fee
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.PaymentId">
+            <summary>
+            stores payment id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.AvatarImage">
+            <summary>
+            avatar image should store path to image, not used in this version of project
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.MembershipTypeId">
+            <summary>
+            stores membership id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.MembershipType">
+            <summary>
+            this is foreign key to membershiptype table
+            </summary>
+        </member>
+        <member name="M:CCCSportsCentreGradedUnit.Models.Member.#ctor">
+            <summary>
+            constructor with hashset of bookings
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Member.Bookings">
+            <summary>
+            collection of bookings for each user
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Gender">
+            <summary>
+            Gender Enumeration 
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Title">
+            <summary>
+            Title enumeration
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.MembershipType">
+            <summary>
+            membership Type class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.MembershipType.Id">
+            <summary>
+            stores membershiptype id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.MembershipType.Name">
+            <summary>
+            stores name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.MembershipType.Price">
+            <summary>
+            stores price
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.MembershipType.Members">
+            <summary>
+            stores all members that bought this membership type
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Room">
+            <summary>
+            Room class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Room.Id">
+            <summary>
+            stores room id
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Room.Capacity">
+            <summary>
+            stores how many people can fit into room
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Room.Name">
+            <summary>
+            stores room's "name"
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Staff">
+            <summary>
+            Staff class, have properties specific only for staff
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Staff.JobTitle">
+            <summary>
+            gets or sets job title
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Staff.EmergencyContact">
+            <summary>
+            gets or sets Emergency contact
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Staff.EmergencyContDetails">
+            <summary>
+            stores emergency contact phone number
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Staff.CurrentQualification">
+            <summary>
+            stores current quialification
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.Staff.RoleType">
+            <summary>
+            stores role
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.Role">
+            <summary>
+            Role enumertaion
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.ActivityReport">
+            <summary>
+            this view model is used to create reports revenuse by activity and class
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.BookClassViewModel">
+            <summary>
+            this view model is used to handle bookings
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.BookingDetailsViewModel">
+            <summary>
+            this view model is used to display details of booking
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.BookingDetailsViewModel.Booking">
+            <summary>
+            booking
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.BookingDetailsViewModel.FitnessClasses">
+            <summary>
+            list of fintes classes
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.BookingDetailsViewModel.FitnessActivities">
+            <summary>
+            lsit of fitness activities
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel">
+            <summary>
+            this view model is used to create new fitness activity
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel.FitnessActivity">
+            <summary>
+            fitnessa activity 
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel.Rooms">
+            <summary>
+            list of rooms
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel.FitnessActivityCategories">
+            <summary>
+            list of FitnessActivityCategories
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel">
+            <summary>
+            this view model is used to create new fitness activity
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel.FitnessClass">
+            <summary>
+            fitness class
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel.Rooms">
+            <summary>
+            list of rooms
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel.FitnessClassCategories">
+            <summary>
+            list of FitnessClassCategories
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.MemberBookingViewModel">
+            <summary>
+            this view model is used to display list of bookings for member or all users(for staff)
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.MemberBookingViewModel.Bookings">
+            <summary>
+            list of bookings
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel">
+            <summary>
+            model for creating new staff member
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.Email">
+            <summary>
+            stores email
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.PhoneNumber">
+            <summary>
+            stores phone number
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.Password">
+            <summary>
+            stores password
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.ConfirmPassword">
+            <summary>
+            confrim password, must be the same as password
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.FirstName">
+            <summary>
+            stores first name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.LastName">
+            <summary>
+            stores last name
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.HouseNumber">
+            <summary>
+            stores house number
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.Street">
+            <summary>
+            stores street
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.City">
+            <summary>
+            stores city 
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.Country">
+            <summary>
+            stores country
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.PostCode">
+            <summary>
+            stores post code
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.JobTitle">
+            <summary>
+            stores jobtitle
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.EmergencyContact">
+            <summary>
+            stores emergency contact
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.CurrentQualification">
+            <summary>
+            sotres current qualifiaction
+            </summary>
+        </member>
+        <member name="P:CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel.RoleType">
+            <summary>
+            stores role
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.AuthMessageSenderOptions">
+            <summary>
+            class to get API key and user for SendGrid
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Services.EmailSender">
+            <summary>
+            class to handle sending emails
+            </summary>
+        </member>
+        <member name="T:CCCSportsCentreGradedUnit.Utility.SD">
+            <summary>
+            this class is used for storing paths to folders and default images
+            used when uploading images
+            </summary>
+        </member>
+        <member name="F:CCCSportsCentreGradedUnit.Utility.SD.DefaultClassImage">
+            <summary>
+            name of default class image
+            </summary>
+        </member>
+        <member name="F:CCCSportsCentreGradedUnit.Utility.SD.DefaultActivityImage">
+            <summary>
+            default activity image
+            </summary>
+        </member>
+        <member name="F:CCCSportsCentreGradedUnit.Utility.SD.ImageClassFolder">
+            <summary>
+            path to class images folder
+            </summary>
+        </member>
+        <member name="F:CCCSportsCentreGradedUnit.Utility.SD.ImageActivityFolder">
+            <summary>
+            path to activity images folder
+            </summary>
+        </member>
+    </members>
+</doc>

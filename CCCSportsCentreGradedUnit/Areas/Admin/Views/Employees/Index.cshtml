@@ -1,0 +1,126 @@
+﻿@model PaginatedList<CCCSportsCentreGradedUnit.Models.Staff>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+
+<div class="row">
+
+    <div class="col-6">
+        <h2 class="text-info">Employees List</h2>
+    </div>
+    <div class="col-6 text-lg-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Employee</a>
+
+    </div>
+
+</div>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+
+            <th>
+                First Name
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["JobSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Job Title</a>
+            </th>
+
+            <th>
+                Manage
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td style="width@150px">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-primary" href="@Url.Action("Edit/"+item.Id)">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <a type="button" class="btn btn-success" href="@Url.Action("Details/"+item.Id)">
+                            <i class="far fa-list-alt"></i>
+                        </a>
+                        <a type="button" class="btn btn-danger" href="@Url.Action("Delete/"+item.Id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+

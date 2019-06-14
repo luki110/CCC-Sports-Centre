@@ -1,0 +1,126 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel
+@using CCCSportsCentreGradedUnit.Extensions
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">@TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">@TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<h2 class="text-info"> Create Fitness Class</h2>
+<form method="post" asp-action="Create">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClassCategories"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.FitnessClass.FitnessClassCategoryId" asp-items="Model.FitnessClassCategories.ToSelectListItem(Model.FitnessClass.FitnessClassCategoryId)" class="form-control"></select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.StartDate"></label>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="FitnessClass.StartDate" class="form-control" id="datepicker">
+            </div>
+            <span asp-validation-for="FitnessClass.StartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.StartTime"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.StartTime" value="" type="text" class="timepicker form-control" />
+            </div>
+            <span asp-validation-for="FitnessClass.StartTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Duration"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Duration" class="form-control" />
+            </div>
+            <span asp-validation-for="FitnessClass.Duration" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Price"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Price" class="form-control" />
+            </div>
+            <span asp-validation-for="FitnessClass.Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Rooms"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.FitnessClass.RoomId" asp-items="Model.Rooms.ToSelectListItem(Model.FitnessClass.RoomId)" class="form-control"></select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Available"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Available" />
+            </div>
+            <span asp-validation-for="FitnessClass.Available" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Create" />
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        $('.timepicker').timepicker({
+            timeFormat: 'HH:mm',
+            interval: 60,
+            minTime: '8:00',
+            maxTime: '19:00',
+            defaultTime: '08:00',
+            startTime: '08:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
+
+        $(function () {
+            $("#datepicker").datepicker({
+                minDate: "+0H", dateFormat: "dd/mm/yy"
+            }
+            );
+        });
+    </script>
+
+}
+
+

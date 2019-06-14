@@ -1,0 +1,967 @@
+﻿@model PaginatedList<CCCSportsCentreGradedUnit.Models.FitnessActivity>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <a asp-action="ActivitiesReportListDownload" asp-controller="BookActivity" class="btn btn-info">Generate excel Activity report</a>
+
+}
+<div class="row">
+
+    <div class="col-md-6">
+        <h2 class="text-info">Search for your favourite activity</h2>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2">
+        <a class="btn btn-primary pull-right btn-outline-info" asp-area="Customer" asp-controller="Booking" asp-action="Index">Search for classes</a>
+    </div>
+
+
+</div>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<br />
+
+<p class="col-4">
+
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#TodaysActivities" aria-expanded="false" aria-controls="TodaysActivities">
+        Todays activities
+    </button>
+</p>
+<div class="collapse" id="TodaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today)
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else if (item.StartTime < DateTime.Now)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">It's to late</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date = DateTime.Today.AddDays(1).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#TomorrowsActivities" aria-expanded="false" aria-controls="TomorrowsActivities">
+        @date
+    </button>
+</p>
+<div class="collapse" id="TomorrowsActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(1))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date2 = DateTime.Today.AddDays(2).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#TwodaysActivities" aria-expanded="false" aria-controls="TwodaysActivities">
+        @date2
+    </button>
+</p>
+<div class="collapse" id="TwodaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(2))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<p class="col-4">
+    @{var date3 = DateTime.Today.AddDays(3).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#ThreedaysActivities" aria-expanded="false" aria-controls="ThreedaysActivities">
+        @date3
+    </button>
+</p>
+<div class="collapse" id="ThreedaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(3))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date4 = DateTime.Today.AddDays(4).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#FourdaysActivities" aria-expanded="false" aria-controls="FourdaysActivities">
+        @date4
+    </button>
+</p>
+<div class="collapse" id="FourdaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(4))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date5 = DateTime.Today.AddDays(5).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#FivedaysActivities" aria-expanded="false" aria-controls="FivedaysActivities">
+        @date5
+    </button>
+</p>
+<div class="collapse" id="FivedaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(5))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date6 = DateTime.Today.AddDays(6).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#SixdaysActivities" aria-expanded="false" aria-controls="SixdaysActivities">
+        @date6
+    </button>
+</p>
+<div class="collapse" id="SixdaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(6))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date7 = DateTime.Today.AddDays(7).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#SevendaysActivities" aria-expanded="false" aria-controls="SevendaysActivities">
+        @date7
+    </button>
+</p>
+<div class="collapse" id="SevendaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(7))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p class="col-4">
+    @{var date8 = DateTime.Today.AddDays(8).ToShortDateString(); }
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#EightdaysActivities" aria-expanded="false" aria-controls="EightdaysActivities">
+        @date8
+    </button>
+</p>
+<div class="collapse" id="EightdaysActivities">
+    <div class="card card-body">
+
+        <div>
+            <div>
+                <table class="table table-striped border table-responsive">
+                    <tr class="table-info">
+
+
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+                        </th>
+                        <th style="text-align:center">
+                            Price
+                        </th>
+                        <th style="text-align:center">
+                            Date
+                        </th>
+                        <th style="text-align:center">
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+                        </th>
+                        <th style="text-align:center">
+                            End Time
+                        </th>
+                        <th style="text-align:center">
+                            Location
+                        </th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        if (item.StartDate == DateTime.Today.AddDays(8))
+                        {
+
+
+
+                            <tr style="padding:50px">
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.FitnessActivityCategory.Name)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:c}", item.Price)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(m => item.StartDate)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.StartTime)
+                                </td>
+                                <td style="text-align:center">
+                                    @String.Format("{0:HH:mm}", item.EndTime)
+                                </td>
+
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(c => item.Room.Name)
+                                </td>
+                                <td>
+                                    @if (!item.Available)
+                                    {
+                                        <a asp-action="Details" asp-controller="BookActivity" class="btn disabled  pull-right btn-outline-info" asp-route-id="@item.Id">Already Booked</a>
+                                    }
+                                    else
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="Details" asp-controller="BookActivity" class="btn btn-success pull-right btn-outline-info" asp-route-id="@item.Id">Book</a>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-12">
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Login" returnUrl="Request.Url.PathAndQuerry">Login to Book</a>
+
+                                                <a asp-area="Identity" class="btn btn-success pull-right btn-outline-info" asp-page="/Account/Register" returnUrl="Request.Url.PathAndQuerry">Register a new account</a>
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+

@@ -1,0 +1,80 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-CCCSportsCentreGradedUnit-01346460-B140-4365-B609-880D040BFCDC</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.1\CCCSportsCentreGradedUnit.xml</DocumentationFile>
+    <OutputPath>bin\Debug\netcoreapp2.1\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190527174022_addedPaymentId.cs" />
+    <Compile Remove="Migrations\20190527174022_addedPaymentId.Designer.cs" />
+    <Compile Remove="Migrations\20190528102003_add-migration addedmorePaymentproperties.cs" />
+    <Compile Remove="Migrations\20190528102003_add-migration addedmorePaymentproperties.Designer.cs" />
+    <Compile Remove="Migrations\20190528103450_editedBooleans.cs" />
+    <Compile Remove="Migrations\20190528103450_editedBooleans.Designer.cs" />
+    <Compile Remove="Migrations\20190528140436_membershipTypemapped.cs" />
+    <Compile Remove="Migrations\20190528140436_membershipTypemapped.Designer.cs" />
+    <Compile Remove="Migrations\20190528140838_membershipTypemappedandPaymentId.cs" />
+    <Compile Remove="Migrations\20190528140838_membershipTypemappedandPaymentId.Designer.cs" />
+    <Compile Remove="Migrations\20190528141643_reversedMembership.cs" />
+    <Compile Remove="Migrations\20190528141643_reversedMembership.Designer.cs" />
+    <Compile Remove="Migrations\20190528161137_isPaymentConfirmedfuckyou.cs" />
+    <Compile Remove="Migrations\20190528161137_isPaymentConfirmedfuckyou.Designer.cs" />
+    <Compile Remove="Migrations\20190610153748_upupAndAway.cs" />
+    <Compile Remove="Migrations\20190610153748_upupAndAway.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BootstrapNotifications" Version="0.3.2" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="SendGrid" Version="9.11.0" />
+    <PackageReference Include="Stripe.net" Version="25.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\images\ClassImages\" />
+    <Folder Include="wwwroot\images\ActivityImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Customer\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Customer\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Pages\Account\Manage\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\images\hero_b1_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\pool.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

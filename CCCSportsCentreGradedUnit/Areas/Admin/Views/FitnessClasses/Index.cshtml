@@ -1,0 +1,143 @@
+﻿@model PaginatedList<CCCSportsCentreGradedUnit.Models.FitnessClass>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br /> <br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<div class="row">
+
+    <div class="col-6">
+        <h2 class="text-info">List of Classes </h2>
+
+    </div>
+    <div class="col-6 text-lg-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Class</a>
+
+    </div>
+
+</div>
+<br />
+<div class="row">
+
+    <div class="col-6">
+        <h2 class="text-info">Search for class</h2>
+    </div>
+
+
+</div>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name, date, location: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<br />
+<div>
+    <table class="table table-striped border table-responsive">
+        <tr class="table-info">
+
+
+            <th style="text-align:center">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+            </th>
+            <th style="text-align:center">
+                Price
+            </th>
+            <th style="text-align:center">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Date</a>
+            </th>
+            <th style="text-align:center">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TimeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Start Time</a>
+            </th>
+            <th style="text-align:center">
+                End Time
+            </th>
+            <th style="text-align:center">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["roomSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Location</a>
+            </th>
+            <th style="text-align:center">
+                Is available
+            </th>
+            <th style="text-align:center">
+                People booked
+            </th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr style="padding:50px">
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.FitnessClassCategory.Name)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:c}", item.Price)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(m => item.StartDate)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:HH:mm}", item.StartTime)
+                </td>
+                <td style="text-align:center">
+                    @String.Format("{0:HH:mm}", item.EndTime)
+                </td>
+
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.Room.Name)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.Available)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.NoOfPeopleBooked)
+                </td>
+                <td>
+                    <partial name="_TableButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+
+        }
+    </table>
+
+</div>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

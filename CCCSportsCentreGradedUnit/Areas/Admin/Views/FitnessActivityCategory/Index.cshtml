@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CCCSportsCentreGradedUnit.Models.FitnessActivityCategory>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<br />
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Fitness Activity Types</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Activity Type</a>
+    </div>
+
+
+
+</div>
+<br />
+<div>
+    <table class="table table-striped table-responsive">
+        <tr class="table-info">
+            <th>
+                @*Display name from model*@
+                @Html.DisplayNameFor(m => m.Name)
+
+            </th>
+            <th>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @*Using for each to retrieve list from database*@
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => item.Name)
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <partial name="_TableButtonPartial" model="item.Id" />
+        </td>
+
+
+    </tr>
+        }
+
+    </table>
+
+</div>
+

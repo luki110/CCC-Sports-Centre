@@ -1,0 +1,118 @@
+﻿@model CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel
+@using CCCSportsCentreGradedUnit.Extensions
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+
+<h2 class="text-info"> Details of Fitness Class</h2>
+
+<div class="p-4 border rounded row">
+    <div class="col-8">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClassCategories"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.FitnessClassCategory.Name" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.StartDate"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.StartDate" disabled class="form-control"  id="datepicker"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.StartTime"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.StartTime" disabled class="timepicker form-control"  />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.EndTime"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.EndTime" disabled class=" timepicker form-control"  />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Duration"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Duration" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Price"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Price" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="FitnessClass.Available"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Available" readonly />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Location</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FitnessClass.Room.Name" readonly class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="col-1">
+
+    </div>
+    <div class="col-3">
+        <img src="@Model.FitnessClass.FitnessClassCategory.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.FitnessClass.Id">Edit</a>
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        $('.timepicker').timepicker({
+            timeFormat: 'HH:mm',
+            interval: 60,
+            minTime: '8:00',
+            maxTime: '19:00',            
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
+
+        $(function () {
+            $("#datepicker").datepicker({
+                minDate: "+0H", dateFormat: "dd/mm/yy"
+            }
+            );
+        });
+    </script>
+
+}
+
+

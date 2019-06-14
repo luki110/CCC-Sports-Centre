@@ -1,0 +1,242 @@
+﻿@page
+@model RegisterModel
+@using CCCSportsCentreGradedUnit.Models
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@using  CCCSportsCentreGradedUnit.Data
+@inject ApplicationDbContext _db
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"]</h2>
+@if (TempData.ContainsKey("Alert"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+}
+else if (TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Success"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+}
+<br />
+<form asp-action="@Model.ReturnUrl" method="post">
+
+    <div class="container border border-secondary rounded" style="padding:15px;">
+        <div class="row">
+            <div class="col-8" style="border-right:1px solid #bbb9b9;">
+
+                <div class="col-md-12">
+
+                    <h4>Create a new account.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.PhoneNumber"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.MemberTitle"></label>
+                        <select asp-for="Input.MemberTitle" asp-items="Html.GetEnumSelectList<Title>()" class="form-control">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                        <span asp-validation-for="Input.MemberTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.FirstName"></label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.LastName"></label>
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.PostCode"></label>
+                        <input asp-for="Input.PostCode" class="form-control" />
+                        <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.HouseNumber"></label>
+                        <input asp-for="Input.HouseNumber" class="form-control" />
+                        <span asp-validation-for="Input.HouseNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Street"></label>
+                        <input asp-for="Input.Street" class="form-control" />
+                        <span asp-validation-for="Input.Street" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.City"></label>
+                        <input asp-for="Input.City" class="form-control" />
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Country"></label>
+                        <input asp-for="Input.Country" class="form-control" />
+                        <span asp-validation-for="Input.Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.BirthDate"></label>
+                        <input asp-for="Input.BirthDate" value="" type="text" id="datepicker" class="form-control" />
+                        <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.GenderType"></label>
+                        <select asp-for="Input.GenderType" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                        <span asp-validation-for="Input.GenderType" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-4" style="padding-left:50px;">
+                <div class="row">
+                    @*<div>
+                            <label>Please select one of membership options below</label>
+                        </div>
+                        <div class="btn-group btn-group-toggle" id="radioMembership" data-toggle="buttons">
+
+                            <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Adult" aria-expanded="false" aria-controls="Adult">
+
+                                <input asp-for="Input.MembershipTypeId" type="radio" value="1" id="1" name="Input.MembershipTypeId"> Adult
+
+                            </label>
+                            <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Junior" aria-expanded="false" aria-controls="Junior">
+
+                                <input asp-for="Input.MembershipTypeId" type="radio" value="2" id="2" name="Input.MembershipTypeId"> Junior
+                            </label>
+                            <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Family" aria-expanded="false" aria-controls="Family">
+
+                                <input asp-for="Input.MembershipTypeId" type="radio" value="3" id="3" name="Input.MembershipTypeId"> Family
+                            </label>
+                        </div>
+                        <div class="collapse" id="Adult">
+                            <p>
+                                Price £30 per month
+                            </p>
+                        </div>
+                        <div class="collapse" id="Junior">
+                            <p>
+                                Price £15 per month
+                            </p>
+                        </div>
+                        <div class="collapse" id="Family">
+                            <p>
+                                Price £75 per month. 2 adults and up to 4 children
+                            </p>
+                        </div>*@
+                    <div class="btn-group btn-group-toggle" id="radioMembership" data-toggle="buttons">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+
+
+                                        <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Adult" aria-expanded="false" aria-controls="Adult">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <input asp-for="Input.MembershipTypeName" type="radio" value="Adult" id="1" name="Input.MembershipTypeName"> Adult
+                                            </button>
+                                        </label>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Price £30 per month. All membership plans are payed annually.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Junior" aria-expanded="false" aria-controls="Junior">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+
+                                                <input asp-for="Input.MembershipTypeName" type="radio" value="Junior" id="2" name="Input.MembershipTypeName"> Junior
+
+                                            </button>
+                                        </label>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+
+                                        Price £15 per month. All membership plans are payed annually.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <label class="btn btn-secondary " style="width:100px" data-toggle="collapse" data-target="#Family" aria-expanded="false" aria-controls="Family">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+
+
+                                                <input asp-for="Input.MembershipTypeName" type="radio" value="Family" id="3" name="Input.MembershipTypeName"> Family
+
+                                            </button>
+                                        </label>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Price £75 per month. All membership plans are payed annually. 2 adults and up to 4 children.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Register</button>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        $(function () {
+            $("#datepicker").datepicker({
+                maxDate: "-1Y",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+            }
+            );
+        });
+
+    </script>
+}

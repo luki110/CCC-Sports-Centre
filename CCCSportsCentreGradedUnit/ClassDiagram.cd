@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CCCSportsCentreGradedUnit.Models.ApplicationUser" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAIAAAAAAAAAEIAAAAAAAIAgAAAAAg=</HashCode>
+      <FileName>Models\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.Booking" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEAAIAAAAAIAQAEAAAIAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\Booking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ErrorViewModel" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessActivity" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAQACAAAAIBAAAABAIAAgAAAAAACAAEAAAAA=</HashCode>
+      <FileName>Models\FitnessActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessActivityBooking" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAIAAAAAAAAAAAAAABAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\FitnessActivityBooking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessActivityCategory" Collapsed="true">
+    <Position X="10" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FitnessActivityCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessClass" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAQACAAgAABAAAABAIAggAgAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\FitnessClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessClassBooking" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAIIAAAAAAAAAAAAABBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FitnessClassBooking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.FitnessClassCategory" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FitnessClassCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.Member" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAEgAAAgAEAACEcCAQAAABAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.MembershipType" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\MembershipType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.Room" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.Staff" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAA=</HashCode>
+      <FileName>Models\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.ActivityReport" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\ViewModels\ActivityReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.BookClassViewModel" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAABYAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\BookClassViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.BookingDetailsViewModel" Collapsed="true">
+    <Position X="12" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\BookingDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.FitnessActivityViewModel" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAACAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\FitnessActivityViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.FitnessClassViewModel" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\ViewModels\FitnessClassViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.MemberBookingViewModel" Collapsed="true">
+    <Position X="12" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\MemberBookingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCCSportsCentreGradedUnit.Models.ViewModels.StaffModel" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAgDAAAAAIAAAAQAAAAEIAAAACAAIBgAAIIAg=</HashCode>
+      <FileName>Models\ViewModels\StaffModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CCCSportsCentreGradedUnit.Models.Gender" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Member.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCCSportsCentreGradedUnit.Models.Title" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Member.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCCSportsCentreGradedUnit.Models.Role" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAQAAACAIBQABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="8.77" />
+</ClassDiagram>
