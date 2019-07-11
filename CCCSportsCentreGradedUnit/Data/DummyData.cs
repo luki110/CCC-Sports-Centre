@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -489,7 +490,7 @@ namespace CCCSportsCentreGradedUnit.Data
                     Country = "UK",
                     PostCode = "G6 66G",
                     PhoneNumber = "6969696969",
-                    BirthDate = DateTime.Parse("22/04/1990"),
+                    BirthDate = DateTime.Parse("12/04/1990"),
                     GenderType = Gender.Male,
                     RegistrationDate = DateTime.Now,
                     ExpiryDate = DateTime.Now.AddYears(1),
@@ -524,7 +525,7 @@ namespace CCCSportsCentreGradedUnit.Data
                     Country = "UK",
                     PostCode = "G6 66G",
                     PhoneNumber = "6969696969",
-                    BirthDate = DateTime.Parse("22/04/1990"),
+                    BirthDate = DateTime.Parse("12/04/1990"),   //zmiana 1
                     GenderType = Gender.Female,
                     RegistrationDate = DateTime.Now,
                     ExpiryDate = DateTime.Now.AddYears(1),
@@ -558,7 +559,7 @@ namespace CCCSportsCentreGradedUnit.Data
                     Country = "UK",
                     PostCode = "G6 66G",
                     PhoneNumber = "6969696969",
-                    BirthDate = DateTime.Parse("21/01/1994"),
+                    BirthDate = DateTime.Parse("11/01/1994"),
                     GenderType = Gender.Female,
                     RegistrationDate = DateTime.Now,
                     ExpiryDate = DateTime.Now.AddYears(1),

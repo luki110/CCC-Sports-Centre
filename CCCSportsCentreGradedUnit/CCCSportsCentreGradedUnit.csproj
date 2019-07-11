@@ -27,6 +27,13 @@
     <Compile Remove="Migrations\20190528161137_isPaymentConfirmedfuckyou.Designer.cs" />
     <Compile Remove="Migrations\20190610153748_upupAndAway.cs" />
     <Compile Remove="Migrations\20190610153748_upupAndAway.Designer.cs" />
+    <Compile Remove="Migrations\20190614172942_abc.cs" />
+    <Compile Remove="Migrations\20190614172942_abc.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CCCSportsCentreGradedUnit.xml" />
+    <None Remove="ClassDiagram.cd" />
   </ItemGroup>
 
   <ItemGroup>
